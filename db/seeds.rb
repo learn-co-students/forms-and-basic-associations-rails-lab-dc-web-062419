@@ -8,6 +8,9 @@
 
 # ID3 tag music genres are surprisingly specific.
 
+Song.destroy_all
+Note.destroy_all
+
 genres = Hash[[
   "Blues",
   "Classic Rock",

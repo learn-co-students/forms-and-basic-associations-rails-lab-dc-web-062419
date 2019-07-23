@@ -13,6 +13,16 @@ class SongsController < ApplicationController
 
   def create
     @song = Song.new(song_params)
+    content_array = params[:song][:notes_content]
+    content_array.each do |nc|
+      new_note = Note.create(content: nc, song_id: @song.id) 
+      @song.notes << new_note
+    end
+  
+    # @song.genre_name=params[:genre_id]
+
+
+
 
     if @song.save
       redirect_to @song
@@ -47,7 +57,7 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title)
+    params.require(:song).permit(:title, :genre_id, :song_notes_1, :song_notes_2, :notes_ids, :artist_name)
   end
 end
 
