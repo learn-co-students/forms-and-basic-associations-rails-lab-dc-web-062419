@@ -15,14 +15,10 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
     content_array = params[:song][:notes_content]
     content_array.each do |nc|
-      new_note = Note.create(content: nc, song_id: @song.id) 
-      @song.notes << new_note
+      # new_note = Note.create(content: nc, song_id: @song.id) 
+      # @song.notes << new_note
+      @song.notes.build(content: nc)
     end
-  
-    # @song.genre_name=params[:genre_id]
-
-
-
 
     if @song.save
       redirect_to @song
